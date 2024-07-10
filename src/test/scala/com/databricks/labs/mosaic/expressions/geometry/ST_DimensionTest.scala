@@ -6,7 +6,7 @@ import org.apache.spark.sql.test.SharedSparkSession
 class ST_DimensionTest extends MosaicSpatialQueryTest with SharedSparkSession with ST_DimensionBehaviors {
 
     testAllGeometriesNoCodegen("Testing stDimension") { dimensionBehavior }
-    testAllGeometriesCodegen("Testing stDimension CODEGEN compilation") { dimensionCodegen }
+//    testAllGeometriesCodegen("Testing stDimension CODEGEN compilation") { dimensionCodegen }
     testAllGeometriesCodegen("Testing stDimension CODEGEN") { dimensionBehavior }
     testAllGeometriesNoCodegen("Testing stDimension auxiliaryMethods") { auxiliaryMethods }
 

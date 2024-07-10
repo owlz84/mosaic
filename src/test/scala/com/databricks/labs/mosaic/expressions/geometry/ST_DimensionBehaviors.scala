@@ -1,12 +1,12 @@
 package com.databricks.labs.mosaic.expressions.geometry
 
 import com.databricks.labs.mosaic.functions.MosaicContext
-import com.databricks.labs.mosaic.test.{mocks, MosaicSpatialQueryTest}
+import com.databricks.labs.mosaic.test.{MosaicSpatialQueryTest, mocks}
 import com.databricks.labs.mosaic.test.mocks.getWKTRowsDf
 import org.apache.spark.sql.{QueryTest, Row}
 import org.apache.spark.sql.catalyst.expressions.codegen.CodeGenerator
 import org.apache.spark.sql.execution.WholeStageCodegenExec
-import org.apache.spark.sql.types.DoubleType
+import org.apache.spark.sql.types.{DoubleType, IntegerType}
 import org.apache.spark.sql.QueryTest.checkAnswer
 import org.scalatest.matchers.must.Matchers.{be, noException}
 import org.scalatest.matchers.should.Matchers.convertToAnyShouldWrapper
@@ -79,7 +79,7 @@ trait ST_DimensionBehaviors extends MosaicSpatialQueryTest {
         val stDimension = ST_Dimension(df.col("wkt").expr, mc.expressionConfig)
 
         stDimension.child shouldEqual df.col("wkt").expr
-        stDimension.dataType shouldEqual DoubleType
+        stDimension.dataType shouldEqual IntegerType
         noException should be thrownBy stDimension.makeCopy(Array(stDimension.child))
         noException should be thrownBy ST_Dimension.unapply(stDimension)
         noException should be thrownBy ST_Dimension.apply(stDimension.child, mc.expressionConfig)
